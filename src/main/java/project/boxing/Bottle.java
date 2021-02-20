@@ -11,7 +11,6 @@ public class Bottle {
         for (int i = 0; i < bubbles.length; i++) {
             bubbles[i] = new Bubble("anyGas");
         }
-        //TODO
     }
 
     public SparklingWater getWater() {
@@ -23,11 +22,13 @@ public class Bottle {
     }
 
      public void open() {
-       this.water.setOpened(true);
+       water.setOpened(true);
+         System.out.println("Now bottle is open");
     }
 
     public void warm(int temperature) {
         water.setTemperature(temperature);
+        System.out.println("Warming water to: " + temperature);
     }
 
 }

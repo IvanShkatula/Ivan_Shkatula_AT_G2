@@ -1,5 +1,7 @@
 package day4.homework.bubbles;
 
+import org.w3c.dom.ls.LSOutput;
+
 import java.util.Arrays;
 
 public class SparklingWater extends Water {
@@ -16,17 +18,8 @@ public class SparklingWater extends Water {
     }
 
     public void isOpened() {
-        if (isOpened) {
-            degas();
-        }
-    }
-
-    public void pump(Bubble[] bubbles) {
-        this.bubbles = bubbles;
-    }
-
-    public void checkIsOpened() {
         new Thread(() -> {
+            System.out.print("process degas started\n");
             while (Thread.interrupted()) {
                 if (isOpened) {
                     degas();
@@ -40,7 +33,13 @@ public class SparklingWater extends Water {
         }).start();
     }
 
+    public void pump(Bubble[] bubbles) {
+        this.bubbles = bubbles;
+        System.out.println();
+    }
+
     private void degas() {
+        System.out.print("gases come out of the bottle\n");
         int bubbleAmount = 10 + 5 * getTemperature();
         for (int i = bubbles.length - 1; i > 0; i--) {
             bubbles[i].cramp();
@@ -50,6 +49,11 @@ public class SparklingWater extends Water {
     }
 
     public boolean isSparkle() {
+        if (bubbles.length != 0) {
+            System.out.print("There are still gases in the bottle\n");
+        } else {
+            System.out.println("There are no gases in the bottle\n");
+        }
         return bubbles.length != 0;
     }
 

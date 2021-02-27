@@ -2,8 +2,8 @@ package day4.homework.bubbles;
 
 public class Bottle {
 
-   private double volume;
-   private SparklingWater water;
+    private double volume;
+    private SparklingWater water = new SparklingWater();
 
     public Bottle(double volume) {
         this.volume = volume;
@@ -11,6 +11,7 @@ public class Bottle {
         for (int i = 0; i < bubbles.length; i++) {
             bubbles[i] = new Bubble("anyGas");
         }
+        this.water.pump(bubbles);
     }
 
     public SparklingWater getWater() {
@@ -21,9 +22,9 @@ public class Bottle {
         this.water = water;
     }
 
-     public void open() {
-       water.setOpened(true);
-         System.out.println("Now bottle is open");
+    public void open() {
+        water.setOpened(true);
+        System.out.println("Now bottle is open");
     }
 
     public void warm(int temperature) {

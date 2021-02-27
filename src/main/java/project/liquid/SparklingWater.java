@@ -1,6 +1,5 @@
 package day4.homework.bubbles;
 
-import org.w3c.dom.ls.LSOutput;
 
 import java.util.Arrays;
 
@@ -20,16 +19,14 @@ public class SparklingWater extends Water {
     public void isOpened() {
         new Thread(() -> {
             System.out.print("process degas started\n");
-            while (Thread.interrupted()) {
-                if (isOpened) {
-                    degas();
-                }
+            while (!isOpened) {
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
+            degas();
         }).start();
     }
 
@@ -39,13 +36,25 @@ public class SparklingWater extends Water {
     }
 
     private void degas() {
-        System.out.print("gases come out of the bottle\n");
-        int bubbleAmount = 10 + 5 * getTemperature();
-        for (int i = bubbles.length - 1; i > 0; i--) {
-            bubbles[i].cramp();
-        }
-        int lastBubble = bubbles.length - bubbleAmount;
-        bubbles = Arrays.copyOf(bubbles, lastBubble);
+        new Thread(() -> {
+            System.out.print("gases come out of the bottle\n");
+            while (bubbles.length != 0) {
+                int bubbleAmount = 10 + 5 * getTemperature();
+                bubbleAmount = bubbles.length < bubbleAmount ? bubbles.length : bubbleAmount;
+                for (int i = bubbles.length - 1; i > bubbles.length - bubbleAmount; i--) {
+                    bubbles[i].cramp();
+                }
+                int lastBubble = bubbles.length - bubbleAmount;
+                bubbles = Arrays.copyOf(bubbles, lastBubble);
+                System.out.println(bubbles.length);
+                isSparkle();
+//                try {
+//                    Thread.sleep(1000);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+            }
+        }).start();
     }
 
     public boolean isSparkle() {

@@ -1,5 +1,6 @@
 package day4.homework.bubbles;
 
+
 import java.util.Arrays;
 
 public class SparklingWater extends Water {
@@ -16,40 +17,52 @@ public class SparklingWater extends Water {
     }
 
     public void isOpened() {
-        if (isOpened) {
-            degas();
-        }
-    }
-
-    public void pump(Bubble[] bubbles) {
-        this.bubbles = bubbles;
-    }
-
-    public void checkIsOpened() {
         new Thread(() -> {
-            while (Thread.interrupted()) {
-                if (isOpened) {
-                    degas();
-                }
+            System.out.print("process degas started\n");
+            while (!isOpened) {
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
+            degas();
         }).start();
     }
 
+    public void pump(Bubble[] bubbles) {
+        this.bubbles = bubbles;
+        System.out.println();
+    }
+
     private void degas() {
-        int bubbleAmount = 10 + 5 * getTemperature();
-        for (int i = bubbles.length - 1; i > 0; i--) {
-            bubbles[i].cramp();
-        }
-        int lastBubble = bubbles.length - bubbleAmount;
-        bubbles = Arrays.copyOf(bubbles, lastBubble);
+        new Thread(() -> {
+            System.out.print("gases come out of the bottle\n");
+            while (bubbles.length != 0) {
+                int bubbleAmount = 10 + 5 * getTemperature();
+                bubbleAmount = bubbles.length < bubbleAmount ? bubbles.length : bubbleAmount;
+                for (int i = bubbles.length - 1; i > bubbles.length - bubbleAmount; i--) {
+                    bubbles[i].cramp();
+                }
+                int lastBubble = bubbles.length - bubbleAmount;
+                bubbles = Arrays.copyOf(bubbles, lastBubble);
+                System.out.println(bubbles.length);
+                isSparkle();
+//                try {
+//                    Thread.sleep(1000);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+            }
+        }).start();
     }
 
     public boolean isSparkle() {
+        if (bubbles.length != 0) {
+            System.out.print("There are still gases in the bottle\n");
+        } else {
+            System.out.println("There are no gases in the bottle\n");
+        }
         return bubbles.length != 0;
     }
 

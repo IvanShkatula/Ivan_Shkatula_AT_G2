@@ -1,18 +1,17 @@
 package day4.homework.bubbles;
 
+
 public class Runner {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
 
-        Bottle bottle = new Bottle(0.5);
-        Bottle bottle2 = new Bottle(1);
-        Bottle bottle3 = new Bottle(1.5);
+        Bottle smallBottle = new Bottle(0.5);
+        Bottle middleBottle = new Bottle(1);
+        Bottle largeBottle = new Bottle(1.5);
 
-
-        bottle.open();
-        bottle2.open();
-        bottle3.open();
-
+        smallBottle.open();
+        middleBottle.open();
+        largeBottle.open();
 
     }
 

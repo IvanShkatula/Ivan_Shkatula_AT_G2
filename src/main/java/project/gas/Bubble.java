@@ -1,4 +1,4 @@
-package day4.homework.bubbles;
+package bubbles.gas;
 
 public class Bubble {
 

@@ -1,5 +1,7 @@
-package day4.homework.bubbles;
+package bubbles.content;
 
+
+import bubbles.gas.Bubble;
 
 import java.util.Arrays;
 
@@ -8,10 +10,15 @@ public class SparklingWater extends Water {
     private boolean isOpened;
     private Bubble[] bubbles;
 
-    public SparklingWater() {
+    public SparklingWater(double volume) {
+        bubbles = new Bubble[(int) (volume * 10000)];
+        for (int i = 0; i < bubbles.length; i++) {
+            bubbles[i] = new Bubble("CO2");
+        }
         isOpened();
     }
 
+    @Override
     public void setOpened(boolean isOpened) {
         this.isOpened = isOpened;
     }
@@ -66,6 +73,10 @@ public class SparklingWater extends Water {
         return bubbles.length != 0;
     }
 
+    @Override
+    public void mix() {
+
+    }
 }
 
 

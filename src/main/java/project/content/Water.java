@@ -1,6 +1,6 @@
-package day4.homework.bubbles;
+package bubbles.content;
 
-public abstract class Water {
+public abstract class Water implements Transformable {
 
     private String color = "no";
     private String transparency = "transparent";
@@ -35,6 +35,7 @@ public abstract class Water {
         return temperature;
     }
 
+    @Override
     public void setTemperature(int temperature) {
         this.temperature = temperature;
     }

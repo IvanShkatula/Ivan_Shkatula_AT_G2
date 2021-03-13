@@ -1,29 +1,26 @@
 package bubbles.boxing;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
-public class VesselBox<T extends Vessel> {
+public class VesselBox<T extends Vessel> implements Serializable {
 
-    private T[] ts;
+    List<T> ts;
 
     public VesselBox(int capacity) {
-        ts = (T[]) new Vessel[capacity];
+        ts = new ArrayList<>(capacity);
     }
 
     public void add(T vessel) {
-
-        for (int i = 0; i < ts.length; i++) {
-            if (ts[i] == null) {
-                ts[i] = vessel;
-            }
-        }
+        ts.add(vessel);
     }
 
     @Override
     public String toString() {
         return "VesselBox{" +
-                "ts=" + Arrays.toString(ts).length() +
+                "ts=" + ts +
                 '}';
     }
-    
 }

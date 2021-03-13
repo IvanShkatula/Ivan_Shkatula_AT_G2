@@ -2,6 +2,7 @@ package bubbles.boxing;
 
 
 import bubbles.content.Transformable;
+import bubbles.material.Glass;
 import bubbles.material.Material;
 
 import java.util.ArrayList;
@@ -10,12 +11,16 @@ import java.io.Serializable;
 
 public class Bottle extends Vessel implements Containable {
 
+    public Bottle() {
+        this(1, 0.3, 1, new Glass(1, "light", 0.5));
+
+    }
+
     //   private SparklingWater water = new SparklingWater();
     private List<Transformable> stuff = new ArrayList<>();
 
     public Bottle(double volume, double diameter, int weight, Material material) {
         super(volume, diameter, weight, material);
-
     }
 
 //    public SparklingWater getWater() {

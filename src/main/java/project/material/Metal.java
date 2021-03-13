@@ -1,6 +1,8 @@
 package bubbles.material;
 
-public class Metal extends Material{
+import java.io.Serializable;
+
+public class Metal extends Material implements Serializable {
     public Metal(double thermalConductivity, String color, double density) {
         super(thermalConductivity, color, density);
     }

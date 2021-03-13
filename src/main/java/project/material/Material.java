@@ -1,6 +1,8 @@
 package bubbles.material;
 
-public abstract class Material {
+import java.io.Serializable;
+
+public abstract class Material implements Serializable {
 
     private double thermalConductivity;
     private String color;

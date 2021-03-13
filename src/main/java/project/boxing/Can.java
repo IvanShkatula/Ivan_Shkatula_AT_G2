@@ -1,10 +1,16 @@
 package bubbles.boxing;
 
 import bubbles.content.Transformable;
+import bubbles.material.Glass;
 import bubbles.material.Material;
+import bubbles.material.Metal;
 
 public class Can extends Vessel implements Containable{
 
+    public Can() {
+        this(1, 0.3, 1, new Metal(3, "green", 3));
+
+    }
 
     public Can(double volume, double diameter, int weight, Material material) {
         super(volume, diameter, weight, material);

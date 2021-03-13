@@ -3,17 +3,20 @@ package bubbles.content;
 
 import bubbles.gas.Bubble;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class SparklingWater extends Water {
 
     private boolean isOpened;
-    private Bubble[] bubbles;
+    List<Bubble> bubbles = new ArrayList<>();
+    //  private Bubble[] bubbles;
 
     public SparklingWater(double volume) {
-        bubbles = new Bubble[(int) (volume * 10000)];
-        for (int i = 0; i < bubbles.length; i++) {
-            bubbles[i] = new Bubble("CO2");
+
+        for (int i = 0; i < volume * 10000; i++) {
+            bubbles.set(i, new Bubble("CO2"));
         }
         isOpened();
     }
@@ -37,7 +40,7 @@ public class SparklingWater extends Water {
         }).start();
     }
 
-    public void pump(Bubble[] bubbles) {
+    public void pump(List<Bubble> bubbles) {
         this.bubbles = bubbles;
         System.out.println();
     }
@@ -45,15 +48,14 @@ public class SparklingWater extends Water {
     private void degas() {
         new Thread(() -> {
             System.out.print("gases come out of the bottle\n");
-            while (bubbles.length != 0) {
+            while (bubbles.size() != 0) {
                 int bubbleAmount = 10 + 5 * getTemperature();
-                bubbleAmount = bubbles.length < bubbleAmount ? bubbles.length : bubbleAmount;
-                for (int i = bubbles.length - 1; i > bubbles.length - bubbleAmount; i--) {
-                    bubbles[i].cramp();
+                bubbleAmount = Math.min(bubbles.size(), bubbleAmount);
+                for (int i = 0; i < bubbleAmount; i++) {
+                    bubbles.get(i).cramp();
                 }
-                int lastBubble = bubbles.length - bubbleAmount;
-                bubbles = Arrays.copyOf(bubbles, lastBubble);
-                System.out.println(bubbles.length);
+                bubbles.subList(0, bubbleAmount).clear();
+                System.out.println(bubbles.size());
                 isSparkle();
 //                try {
 //                    Thread.sleep(1000);
@@ -65,12 +67,12 @@ public class SparklingWater extends Water {
     }
 
     public boolean isSparkle() {
-        if (bubbles.length != 0) {
+        if (bubbles.size() != 0) {
             System.out.print("There are still gases in the bottle\n");
         } else {
             System.out.println("There are no gases in the bottle\n");
         }
-        return bubbles.length != 0;
+        return bubbles.size() != 0;
     }
 
     @Override

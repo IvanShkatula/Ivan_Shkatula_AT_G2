@@ -1,4 +1,4 @@
-package bubbles.content;
+package bubbles.stuff;
 
 public abstract class Water implements Transformable {
 

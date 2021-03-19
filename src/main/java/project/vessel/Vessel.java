@@ -1,4 +1,4 @@
-package bubbles.boxing;
+package bubbles.vessel;
 
 import bubbles.material.Material;
 

@@ -1,8 +1,9 @@
-package bubbles.boxing;
+package bubbles.warehouse;
+
+import bubbles.vessel.Vessel;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class VesselBox<T extends Vessel> implements Serializable {

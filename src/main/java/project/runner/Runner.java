@@ -1,8 +1,8 @@
-package bubbles;
+package bubbles.runner;
 
 
-import bubbles.boxing.Bottle;
-import bubbles.content.SparklingWater;
+import bubbles.vessel.Bottle;
+import bubbles.stuff.SparklingWater;
 import bubbles.material.Glass;
 import bubbles.material.Material;
 

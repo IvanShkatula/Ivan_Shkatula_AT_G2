@@ -1,11 +1,10 @@
-package bubbles.content;
+package bubbles.stuff;
 
-
-import bubbles.gas.Bubble;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class SparklingWater extends Water {
 
@@ -15,9 +14,14 @@ public class SparklingWater extends Water {
 
     public SparklingWater(double volume) {
 
-        for (int i = 0; i < volume * 10000; i++) {
-            bubbles.set(i, new Bubble("CO2"));
-        }
+        bubbles = IntStream.rangeClosed(0, (int) (volume * 10000))
+                .boxed()
+                .map(i -> new Bubble("CO2"))
+                .collect(Collectors.toList());
+//
+//        for (int i = 0; i < volume * 10000; i++) {
+//            bubbles.set(i, new Bubble("CO2"));
+//        }
         isOpened();
     }
 
@@ -51,9 +55,12 @@ public class SparklingWater extends Water {
             while (bubbles.size() != 0) {
                 int bubbleAmount = 10 + 5 * getTemperature();
                 bubbleAmount = Math.min(bubbles.size(), bubbleAmount);
-                for (int i = 0; i < bubbleAmount; i++) {
-                    bubbles.get(i).cramp();
-                }
+
+                bubbles.stream().limit(bubbleAmount).forEach(Bubble::cramp);
+//                IntStream.rangeClosed(0, bubbleAmount).boxed().peek(i -> bubbles.get(i).cramp()).close();
+//                for (int i = 0; i < bubbleAmount; i++) {
+//                    bubbles.get(i).cramp();
+//                }
                 bubbles.subList(0, bubbleAmount).clear();
                 System.out.println(bubbles.size());
                 isSparkle();

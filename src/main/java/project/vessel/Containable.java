@@ -1,6 +1,6 @@
-package bubbles.boxing;
+package bubbles.vessel;
 
-import bubbles.content.Transformable;
+import bubbles.stuff.Transformable;
 
 public interface Containable {
 

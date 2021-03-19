@@ -1,4 +1,4 @@
-package bubbles.boxing;
+package bubbles.warehouse;
 
 import java.io.*;
 

@@ -1,4 +1,4 @@
-package bubbles.gas;
+package bubbles.stuff;
 
 public class Bubble {
 

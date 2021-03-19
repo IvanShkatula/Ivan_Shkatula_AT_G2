@@ -1,7 +1,11 @@
-package bubbles.boxing;
+package bubbles.warehouse;
+
+import bubbles.vessel.Bottle;
+import bubbles.vessel.Can;
+import bubbles.vessel.Cup;
+import bubbles.vessel.Vessel;
 
 import java.io.*;
-import java.util.List;
 
 public class Warehouse {
 
@@ -28,15 +32,15 @@ public class Warehouse {
             System.out.println("capacity must be 9, 25 or 36");
         }
 
-        if (targetClass.getClass().isInstance(Bottle.class)) {
+        if (targetClass.isAssignableFrom(Bottle.class)) {
             VesselBox<Bottle> bottleBox = new VesselBox<>(capacity);
             createBottle(bottleBox, capacity);
             return bottleBox;
-        } else if (targetClass.getClass().isInstance(Cup.class)) {
+        } else if (targetClass.isAssignableFrom(Cup.class)) {
             VesselBox<Cup> cupBox = new VesselBox<>(capacity);
             createCup(cupBox, capacity);
             return cupBox;
-        } else if (targetClass.getClass().isInstance(Can.class)) {
+        } else if (targetClass.isAssignableFrom(Can.class)) {
             VesselBox<Can> canBox = new VesselBox<>(capacity);
             createCan(canBox, capacity);
             return canBox;

@@ -1,7 +1,6 @@
-package bubbles.boxing;
+package bubbles.vessel;
 
-import bubbles.content.Transformable;
-import bubbles.material.Glass;
+import bubbles.stuff.Transformable;
 import bubbles.material.Material;
 import bubbles.material.Metal;
 

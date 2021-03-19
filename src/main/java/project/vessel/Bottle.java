@@ -1,13 +1,13 @@
-package bubbles.boxing;
+package bubbles.vessel;
 
 
-import bubbles.content.Transformable;
+import bubbles.stuff.Transformable;
 import bubbles.material.Glass;
 import bubbles.material.Material;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.io.Serializable;
+import java.util.stream.Collectors;
 
 public class Bottle extends Vessel implements Containable {
 
@@ -43,34 +43,45 @@ public class Bottle extends Vessel implements Containable {
 
     @Override
     public boolean isEmpty() {
-       return stuff.isEmpty();
+        return stuff.isEmpty();
     }
 
     @Override
     public int getFreeSpace() {
-        return  (int) getVolume() * 1000 - stuff.size();
+        return (int) getVolume() * 1000 - stuff.size();
     }
 
     @Override
     public void open() {
-        for (Transformable t : stuff) {
-            t.setOpened(true);
-        }
+        stuff = stuff.stream()
+                .peek(t -> t.setOpened(true))
+                .collect(Collectors.toList());
+
+//        for (Transformable t : stuff) {
+//            t.setOpened(true);
+//        }
+
         System.out.println("Now bottle is open");
     }
 
     @Override
     public void close() {
-        for (Transformable t : stuff) {
-            t.setOpened(false);
-        }
+        stuff = stuff.stream()
+                .peek(t -> t.setOpened(false))
+                .collect(Collectors.toList());
+
+//        for (Transformable t : stuff) {
+//            t.setOpened(false);
+//        }
+
         System.out.println("Now bottle is closed");
     }
 
     public void warm(int temperature) {
-        for (Transformable t : stuff) {
-            t.setTemperature(temperature);
-        }
+        stuff = stuff.stream().peek(t -> t.setTemperature(temperature)).collect(Collectors.toList());
+//        for (Transformable t : stuff) {
+//            t.setTemperature(temperature);
+//        }
         System.out.println("Warming water to: " + temperature);
     }
 

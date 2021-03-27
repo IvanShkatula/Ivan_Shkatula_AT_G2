@@ -2,17 +2,17 @@ package bubbles.vessel;
 
 import bubbles.stuff.Transformable;
 import bubbles.material.Material;
-import bubbles.material.Metal;
 
-public class Can extends Vessel implements Containable{
+
+public class Can extends Vessel implements Containable {
 
     public Can() {
-        this(1, 0.3, 1, new Metal(3, "green", 3));
+        this(1, 10.0, Material.METAL);
 
     }
 
-    public Can(double volume, double diameter, int weight, Material material) {
-        super(volume, diameter, weight, material);
+    public Can(double volume, double diameter, Material material) {
+        super(volume, diameter, material);
     }
 
     @Override
@@ -28,11 +28,6 @@ public class Can extends Vessel implements Containable{
     @Override
     public boolean isEmpty() {
         return false;
-    }
-
-    @Override
-    public int getFreeSpace() {
-        return 0;
     }
 
     @Override

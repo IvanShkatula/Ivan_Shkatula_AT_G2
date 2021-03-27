@@ -2,21 +2,19 @@ package bubbles.vessel;
 
 import bubbles.stuff.Transformable;
 import bubbles.material.Material;
-import bubbles.material.Plastic;
+
 
 import java.io.Serializable;
 
-public class Cup extends Vessel implements Containable, Serializable{
-
-    static final long serialVersionUID = 4647547;
+public class Cup extends Vessel implements Containable, Serializable {
 
     public Cup() {
-        this(0.3, 0.2, 1, new Plastic(1, "wight", 0.5));
+        this(0.3, 8.0, Material.PLASTIC);
 
-}
+    }
 
-    public Cup(double volume, double diameter, int weight, Material material) {
-        super(volume, diameter, weight, material);
+    public Cup(double volume, double diameter, Material material) {
+        super(volume, diameter, material);
     }
 
     @Override
@@ -32,11 +30,6 @@ public class Cup extends Vessel implements Containable, Serializable{
     @Override
     public boolean isEmpty() {
         return false;
-    }
-
-    @Override
-    public int getFreeSpace() {
-        return 0;
     }
 
     @Override

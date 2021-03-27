@@ -1,10 +1,15 @@
 package bubbles.runner;
 
 
+import bubbles.stuff.Water;
 import bubbles.vessel.Bottle;
 import bubbles.stuff.SparklingWater;
-import bubbles.material.Glass;
+
 import bubbles.material.Material;
+import bubbles.vessel.Vessel;
+import bubbles.warehouse.Factory;
+import bubbles.warehouse.VesselBox;
+import bubbles.warehouse.Warehouse;
 
 public class Runner {
 
@@ -13,16 +18,22 @@ public class Runner {
         double volume = 0.5;
 
         SparklingWater sparklingWater = new SparklingWater(volume);
-        Material glass = new Glass(0.5, "blue", 1);
+        Factory factory = new Factory();
 
-        Bottle smallBottle = new Bottle(volume, 1, 1, glass);
-        smallBottle.addStuff(sparklingWater);
+
+        factory.createVesselBox(9, volume, Material.GLASS, sparklingWater, Bottle.class);
+
+
+//        Bottle smallBottle = new Bottle();
+//        smallBottle.addStuff(sparklingWater);
 //        Bottle middleBottle = new Bottle(1);
 //        Bottle largeBottle = new Bottle(1.5);
-
-        smallBottle.open();
+//
+//        smallBottle.open();
 //        middleBottle.open();
 //        largeBottle.open();
+
+
 
     }
 

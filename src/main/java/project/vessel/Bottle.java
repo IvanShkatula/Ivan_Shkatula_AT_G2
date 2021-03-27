@@ -2,7 +2,6 @@ package bubbles.vessel;
 
 
 import bubbles.stuff.Transformable;
-import bubbles.material.Glass;
 import bubbles.material.Material;
 
 import java.util.ArrayList;
@@ -12,24 +11,15 @@ import java.util.stream.Collectors;
 public class Bottle extends Vessel implements Containable {
 
     public Bottle() {
-        this(1, 0.3, 1, new Glass(1, "light", 0.5));
+        this(1, 2.0, Material.GLASS);
 
     }
 
-    //   private SparklingWater water = new SparklingWater();
     private List<Transformable> stuff = new ArrayList<>();
 
-    public Bottle(double volume, double diameter, int weight, Material material) {
-        super(volume, diameter, weight, material);
+    public Bottle(double volume, double diameter, Material material) {
+        super(volume, diameter, material);
     }
-
-//    public SparklingWater getWater() {
-//        return water;
-//    }
-//
-//    public void setWater(SparklingWater water) {
-//        this.water = water;
-//    }
 
     @Override
     public void addStuff(Transformable stuff) {
@@ -44,11 +34,6 @@ public class Bottle extends Vessel implements Containable {
     @Override
     public boolean isEmpty() {
         return stuff.isEmpty();
-    }
-
-    @Override
-    public int getFreeSpace() {
-        return (int) getVolume() * 1000 - stuff.size();
     }
 
     @Override

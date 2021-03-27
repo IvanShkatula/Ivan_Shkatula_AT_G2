@@ -16,7 +16,7 @@ public class SparklingWater extends Water {
 
         bubbles = IntStream.rangeClosed(0, (int) (volume * 10000))
                 .boxed()
-                .map(i -> new Bubble("CO2"))
+                .map(i -> new Bubble())
                 .collect(Collectors.toList());
 //
 //        for (int i = 0; i < volume * 10000; i++) {
@@ -35,7 +35,7 @@ public class SparklingWater extends Water {
             System.out.print("process degas started\n");
             while (!isOpened) {
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(2000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -63,7 +63,7 @@ public class SparklingWater extends Water {
 //                }
                 bubbles.subList(0, bubbleAmount).clear();
                 System.out.println(bubbles.size());
-                isSparkle();
+//                isSparkle();
 //                try {
 //                    Thread.sleep(1000);
 //                } catch (InterruptedException e) {
@@ -73,19 +73,15 @@ public class SparklingWater extends Water {
         }).start();
     }
 
-    public boolean isSparkle() {
-        if (bubbles.size() != 0) {
-            System.out.print("There are still gases in the bottle\n");
-        } else {
-            System.out.println("There are no gases in the bottle\n");
-        }
-        return bubbles.size() != 0;
-    }
+//    public boolean isSparkle() {
+//        if (bubbles.size() != 0) {
+//            System.out.print("There are still gases in the bottle\n");
+//        } else {
+//            System.out.println("There are no gases in the bottle\n");
+//        }
+//        return bubbles.size() != 0;
+//    }
 
-    @Override
-    public void mix() {
-
-    }
 }
 
 

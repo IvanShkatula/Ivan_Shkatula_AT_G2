@@ -1,8 +1,8 @@
-package bubbles.warehouse;
+package warehouse;
 
-import bubbles.material.Material;
-import bubbles.vessel.Containable;
-import bubbles.vessel.Vessel;
+import material.Material;
+import vessel.Containable;
+import vessel.Vessel;
 
 import java.io.Serializable;
 import java.util.ArrayList;

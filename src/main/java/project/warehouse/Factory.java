@@ -1,10 +1,10 @@
-package bubbles.warehouse;
+package warehouse;
 
-import bubbles.material.Material;
-import bubbles.stuff.SparklingWater;
-import bubbles.stuff.Transformable;
-import bubbles.stuff.Water;
-import bubbles.vessel.*;
+import material.Material;
+import stuff.SparklingWater;
+import stuff.Transformable;
+import stuff.Water;
+import vessel.*;
 
 import java.util.ArrayList;
 import java.util.List;

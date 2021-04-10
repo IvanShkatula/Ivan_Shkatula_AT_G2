@@ -1,7 +1,7 @@
-package bubbles.vessel;
+package vessel;
 
-import bubbles.stuff.Transformable;
-import bubbles.material.Material;
+import stuff.Transformable;
+import material.Material;
 
 
 import java.io.Serializable;

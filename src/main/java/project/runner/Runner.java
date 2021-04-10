@@ -1,15 +1,10 @@
-package bubbles.runner;
+package runner;
 
 
-import bubbles.stuff.Water;
-import bubbles.vessel.Bottle;
-import bubbles.stuff.SparklingWater;
-
-import bubbles.material.Material;
-import bubbles.vessel.Vessel;
-import bubbles.warehouse.Factory;
-import bubbles.warehouse.VesselBox;
-import bubbles.warehouse.Warehouse;
+import material.Material;
+import stuff.SparklingWater;
+import vessel.Bottle;
+import warehouse.Factory;
 
 public class Runner {
 

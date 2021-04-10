@@ -1,0 +1,55 @@
+                            Spartak
+
+1) "Главная" -              //ul[@id="main-nav"]//a[text()="Главная"]
+                            //ul[@id="main-nav"]//a[text()="О компании"]/../preceding-sibling::li/a
+2) "Партнерам" -            //ul[@id="main-nav"]//a[text() = "Партнерам"]
+                            //ul[@id="main-nav"]//a[contains(@href, "partners")]
+3) "Персональный кабинет" - //button[@id="user-auth-menu"]/img
+                            //img[@src = "/local/templates/spartak/images/user-icon.png"]
+4) "Ch" -                   //a[text() = "Ch"]
+                            //a[contains(@href, "language=ch")]
+5) "Каталог конфеты" -      //a[@id="bx_290038399_44"]
+                            //div[@class = "main-logo-icons-wrap"]//a[contains(@href, "/catalog/konfety/")]
+6) "Каталог печенье" -      //a[@id="bx_290038399_47"]/img
+                            //a[@id="bx_290038399_47"]//child::img
+7) "1924 img" -             //img[@src="/local/templates/spartak/images/user-icon.png"]
+                            //button[@id="user-auth-menu"]//img
+8) "О компании" -           //h2[text() = "О компании"]
+                            //section[@class="main-about"]//h2[text()="О компании"]
+9) "VK" -                   //span//i[@class="fa fa-vk"]
+                            //a[@class="social-button"]//i[@class="fa fa-vk"]
+10) "YouTube" -             //a[@class="social-button"]//i[@class="fa fa-youtube"]
+                            //span//i[@class="fa fa-youtube"]
+11) "Спартак лого"-         //img[@id="bx_290038399_36"]
+                            //div[@class="main-logo"]/img
+
+                            Mail.ru
+
+1) "Мой мир" -              //a[contains(@href, "my.mail.ru/?from")]
+                            //a[text()="Мой Мир"]
+2) "..." -                  //div[@class="ph-project ph-project__all-projects svelte-pktadz"]
+как достучаться глубже?     //div[@class="ph-projects svelte-pktadz"]//child::div
+3) "Картинки" -             //div[@id="search__categories"]/a[3]
+                            //a[text()="Картинки"]
+4) "Лупа" -                 //form[@id="search"]/label[1]
+                            //label[@class="search__icon svelte-6s275p"]
+5) "Найти" -                //button[@id="search:submit"]
+                            //button[text()="Найти"]
+6) "Ввести пароль" -        //button[@class="button svelte-1eyrl7y"]
+                            //div[@id="mailbox"]/form/button[1]
+7) "Облако" -               //a[@title="Облако"]
+как достучаться глубже?     //div[@class="icons svelte-k8prj"]//a[2]
+8) "@mail.ru" -             //select
+                            //div[@class="domain-text__wrapper svelte-1eyrl7y"]/following-sibling::select
+9) "Создать почту" -        //div[@class="footer svelte-fmoypq"]/a
+                            //a[@href="https://e.mail.ru/signup?from=main&rf=auth.mail.ru"]
+10) "Однокласники" -        //li[@id="asteroid-ok"]//a
+                            //div[text()="Одноклассники"]/../..
+11) "Леди" -                //a[text()="Леди"]
+                            //a[@href="//lady.mail.ru/"]
+12) "Регистрация" -         //a[text()="Регистрация"]
+                            //div[@class="ph-auth svelte-19vjv6r"]/a
+13) "Вторая новость" -      //div[@class="grid__ccol i-pull-left svelte-1fnydfu"]//li[2]
+                            //div[@class="grid__ccol i-pull-left svelte-1fnydfu"]//child::li[2]
+14) "Иконка Курс рубля" -   //i[@class="rate__icon rate__icon_rub svelte-4pzqt9"]
+                            //div[@class="rates svelte-1pstwcs"]/a[2]

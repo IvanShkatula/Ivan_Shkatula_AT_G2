@@ -1,4 +1,4 @@
-package bubbles.material;
+package material;
 
 import java.io.Serializable;
 

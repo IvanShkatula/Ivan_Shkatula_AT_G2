@@ -1,4 +1,4 @@
-package bubbles.warehouse;
+package warehouse;
 
 import java.io.*;
 import java.nio.file.Path;

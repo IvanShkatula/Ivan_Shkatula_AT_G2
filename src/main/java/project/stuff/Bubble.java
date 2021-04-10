@@ -1,4 +1,4 @@
-package bubbles.stuff;
+package stuff;
 
 public class Bubble {
 

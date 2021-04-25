@@ -1,7 +1,5 @@
 package material;
 
-import java.io.Serializable;
-
 public enum Material {
     GLASS(0.017, "green", 2200),
     PLASTIC(0.2, "white", 1800),

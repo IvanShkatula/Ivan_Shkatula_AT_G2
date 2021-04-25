@@ -1,4 +1,4 @@
-package day7InputOutput.homework;
+package tasks.day7;
 
 import java.io.BufferedWriter;
 import java.io.File;

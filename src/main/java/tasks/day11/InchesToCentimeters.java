@@ -1,4 +1,4 @@
-package day11.homework;
+package tasks.day11;
 
 
 import java.util.stream.IntStream;

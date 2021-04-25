@@ -1,4 +1,4 @@
-package day5.homeWork;
+package tasks.day5;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

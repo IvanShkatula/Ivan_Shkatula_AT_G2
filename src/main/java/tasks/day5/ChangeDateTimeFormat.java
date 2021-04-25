@@ -1,4 +1,4 @@
-package day5.homeWork;
+package tasks.day5;
 
 import java.text.ParseException;
 import java.time.LocalDateTime;

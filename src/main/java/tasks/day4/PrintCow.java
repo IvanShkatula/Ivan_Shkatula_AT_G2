@@ -1,4 +1,4 @@
-package day4.homework;
+package tasks.day4;
 
 public class PrintCow {
 

@@ -1,3 +1,5 @@
+package tasks.day2;
+
 import java.util.Random;
 
 public class CycleTask {

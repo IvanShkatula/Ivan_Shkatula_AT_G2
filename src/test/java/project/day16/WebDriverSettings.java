@@ -1,4 +1,4 @@
-package day16HomeWork;
+package project.day16;
 
 import org.junit.After;
 import org.junit.Before;

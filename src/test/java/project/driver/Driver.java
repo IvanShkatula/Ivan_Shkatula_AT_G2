@@ -20,9 +20,9 @@ public class Driver {
 
     public static void setConfig(Config config) {
         Driver.config = config;
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
-        driver.manage().timeouts().setScriptTimeout(10, TimeUnit.SECONDS);
+//        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+//        driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
+//        driver.manage().timeouts().setScriptTimeout(10, TimeUnit.SECONDS);
     }
 
     public static void destroy() {

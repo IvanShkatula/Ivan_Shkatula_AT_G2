@@ -41,16 +41,16 @@ public class TestBookingParis extends WebDriverSettings {
    //             .click();
         Thread.sleep(3000);
 
-        String priceString = driver.findElement(By.xpath("//div[@id='hotellist_inner']/div[1]//div[@class='bui-price-display__value prco-inline-block-maker-helper ']/following-sibling::span")).getText();
+//        String priceString = driver.findElement(By.xpath("//div[@id='hotellist_inner']/div[1]//div[@class='bui-price-display__value prco-inline-block-maker-helper ']/following-sibling::span")).getText();
 //        String numberOnly = priceString.replaceAll("[^0-9]", "");
 //        int priceInt = Integer.parseInt(numberOnly);
 //        System.out.println(priceInt);
-
-        String minMaxPrice = driver.findElement(By.xpath("//*[@id='filter_price']/div[3]/a[5]/label/div/span")).getText();
+//
+//        String minMaxPrice = driver.findElement(By.xpath("//*[@id='filter_price']/div[3]/a[5]/label/div/span")).getText();
 //        String numberOnlyMinMax = minMaxPrice.replaceAll("[^0-9]", "");
 //        int minMaxPriceInt = Integer.parseInt(numberOnlyMinMax);
 //        System.out.println(minMaxPriceInt);
-
+//
 //        Assert.assertTrue("expect price per day > " + minMaxPrice +
 //                "\n actual price per day is " + priceInt / differenceDays,
 //                minMaxPriceInt < priceInt / differenceDays);

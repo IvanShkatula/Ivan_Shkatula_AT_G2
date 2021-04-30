@@ -3,7 +3,8 @@ package project.tests;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.WebElement;
-import project.driver.BaseSteps;
+import project.pages.BaseSteps;
+import project.pages.booking.CarRentalsPage;
 import project.pages.booking.ResultPage;
 import project.pages.booking.MainPage;
 import project.pages.workWithMails.MailRu;
@@ -19,6 +20,7 @@ public class BookingTests extends BaseSteps {
     ResultPage resultPage = new ResultPage();
     Utils utils = new Utils();
     MailRu mailRu = new MailRu();
+    CarRentalsPage carRentalsPage = new CarRentalsPage();
 
     @Test
     public void filterMaxPrice() {
@@ -137,9 +139,50 @@ public class BookingTests extends BaseSteps {
         mainPage.setDate(arrivalDay);
         mainPage.setDate(departureDay);
         mainPage.submit();
-
     }
 
+    @Test
+    public void isAllDowntownHaveCityName() {
+
+        Calendar startUseCarDay = utils.setDate(14);
+        Calendar finishUseCarDay = utils.setDate(19);
+        String startUseCar = utils.parseCalendarToString(startUseCarDay);
+        String finishUseCar = utils.parseCalendarToString(finishUseCarDay);
+
+        mainPage.openMainPage();
+        mainPage.login("charley.bogisich@mobiletrashmail.com", "Password1!");
+        mainPage.openCarRentalsTab();
+        carRentalsPage.pickupLocation("London");
+        carRentalsPage.chooseTarget();
+        mainPage.dateFieldSelect();
+        mainPage.setDate(startUseCar);
+        mainPage.setDate(finishUseCar);
+        mainPage.clickSearch();
+    }
+
+    @Test
+    public void isAllOfferedLocationsCorrespondToLocationInSearchResult() {
+
+        Calendar startUseCarDay = utils.setDate(21);
+        Calendar finishUseCarDay = utils.setDate(24);
+        String startUseCar = utils.parseCalendarToString(startUseCarDay);
+        String finishUseCar = utils.parseCalendarToString(finishUseCarDay);
+        String searchLocation;
+
+        mainPage.openMainPage();
+        mainPage.login("charley.bogisich@mobiletrashmail.com", "Password1!");
+        mainPage.openCarRentalsTab();
+        carRentalsPage.pickupLocation("London");
+        searchLocation = carRentalsPage.getSearchLocation();
+        carRentalsPage.chooseTarget();
+        mainPage.dateFieldSelect();
+        carRentalsPage.setStartCarUsingDate();
+        carRentalsPage.setEndCarUsingDate();
+        mainPage.clickSearch();
+        carRentalsPage.showAllResults();
+        boolean ifResultContainsSerch = carRentalsPage.ifResultContainsSearch(searchLocation);
+        Assert.assertTrue("not all elements contains" + searchLocation, ifResultContainsSerch);
+    }
 
 
 }

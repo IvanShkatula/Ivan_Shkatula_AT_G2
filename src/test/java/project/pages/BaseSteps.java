@@ -1,8 +1,10 @@
-package project.driver;
+package project.pages;
 
 import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
+import project.driver.Config;
+import project.driver.Driver;
 
 import java.util.concurrent.TimeUnit;
 

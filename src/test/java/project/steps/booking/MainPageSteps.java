@@ -3,6 +3,7 @@ package project.steps.booking;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,7 +11,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import project.driver.Driver;
-import project.objects.cucumberbooking.CucumberSitePageObject;
+import project.objects.booking.bookingObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -18,23 +19,25 @@ import java.util.Calendar;
 
 public class MainPageSteps {
 
+    private static final Logger LOGGER = Logger.getLogger(MainPageSteps.class.getName());
     private final String TOOLTIP_XPATH = "//div[@class='bui-tooltip__content']";
 
     WebDriver driver = Driver.getWebDriver();
     WebDriverWait wait = new WebDriverWait(driver, 10);
     WebElement webElement;
     Actions actions = new Actions(driver);
-    CucumberSitePageObject page = new CucumberSitePageObject(driver);
+    bookingObject page = new bookingObject(driver);
 
     @Given("I open a site")
     public void openMainPage() {
         String url = "https://www.booking.com";
         driver.get(url);
-        System.out.println("Opening url " + url);
+        LOGGER.debug("Opening url" + url);
     }
 
     @When("I type {string} as name of the city")
     public void typeCity(String theCity) {
+        LOGGER.debug("typed city is " + theCity);
         page.findCity(theCity);
     }
 
@@ -50,16 +53,20 @@ public class MainPageSteps {
 
     @And("I add adult guest")
     public void increaseNumberOfAdults() {
+
         driver.findElement(By.xpath("//button[@aria-label='Increase number of Adults']/span")).click();
     }
 
     @And("I choose date which is {int} days later than the current date")
     public void setDate(int increaseByNumberOfDays) {
         Calendar calendarDate = Calendar.getInstance();
+        LOGGER.debug("current date is" + calendarDate);
         calendarDate.add(Calendar.DATE, increaseByNumberOfDays);
+        LOGGER.debug("new date is later than current on " + increaseByNumberOfDays + " days");
         String date = new SimpleDateFormat("yyyy-MM-dd").format(calendarDate.getTime());
         String xpath = String.format("//td[@data-date='%s']", date);
         driver.findElement(By.xpath(xpath)).click();
+        LOGGER.debug("new date set by xpath " + xpath);
     }
 
     public void hoverOnCurrencyTooltip() {
@@ -70,6 +77,7 @@ public class MainPageSteps {
 
     public String getTextOfToolTip() {
         String tooltipText = driver.findElement(By.xpath(TOOLTIP_XPATH)).getText();
+        LOGGER.debug("chosen tooltip is " + tooltipText);
         return tooltipText;
     }
 

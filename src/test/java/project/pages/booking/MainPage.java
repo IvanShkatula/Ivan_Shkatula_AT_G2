@@ -1,5 +1,7 @@
 package project.pages.booking;
 
+import org.apache.log4j.Logger;
+import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -7,25 +9,42 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import project.driver.Driver;
+import project.objects.booking.bookingObject;
 
 
 public class MainPage {
 
+    private final Logger LOGGER = Logger.getLogger(MainPage.class.getName());
     private final String TOOLTIP_XPATH = "//div[@class='bui-tooltip__content']";
 
     WebDriver driver = Driver.getWebDriver();
     WebDriverWait wait = new WebDriverWait(driver, 10);
     WebElement webElement;
-    Actions actions = new Actions(driver);;
+    Actions actions = new Actions(driver);
+    bookingObject page = new bookingObject(driver);
 
 
     public void openMainPage() {
-        driver.get("https://www.booking.com");
+        String url = "https://www.booking.com";
+        driver.get(url);
+        LOGGER.debug("Opening url" + url);
     }
 
-    public void typeCity(String cityName) {
-        System.out.println(cityName);
-        driver.findElement(By.id("ss")).sendKeys(cityName);
+    public void login(String emailAddress, String password) {
+        page.login(emailAddress, password);
+    }
+
+    public void typeCity(String theCity) {
+        LOGGER.debug("typed city is " + theCity);
+        page.findCity(theCity);
+    }
+
+    public void clickSearch() {
+        driver.findElement(By.xpath("//span[contains(text(), 'Search')]")).click();
+    }
+
+    public void openCarRentalsTab() {
+        driver.findElement(By.xpath("//span[contains(text(), 'Car')]")).click();
     }
 
     public void dateFieldSelect() {
@@ -64,15 +83,6 @@ public class MainPage {
 
     public void submit() {
         driver.findElement(By.cssSelector("#ss")).submit();
-    }
-
-    public void login(String emailAddress, String password) {
-        driver.findElement(By.xpath("//*[@id='b2indexPage']/header/nav[1]/div[2]/div[6]/a")).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated((By) driver.findElement(By.cssSelector("form"))));
-        driver.findElement(By.id("username")).sendKeys(emailAddress);
-        wait.until(ExpectedConditions.visibilityOfElementLocated((By) driver.findElement(By.id("new_password"))));
-        driver.findElement(By.id("new_password")).sendKeys(password);
-        driver.findElement(By.id("new_password")).submit();
     }
 
     public void registration(String emailAddress) {

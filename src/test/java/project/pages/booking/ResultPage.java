@@ -1,5 +1,6 @@
 package project.pages.booking;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -7,49 +8,52 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import project.driver.Driver;
+import project.objects.booking.bookingObject;
 
 import java.util.List;
 
 public class ResultPage {
 
+    private final Logger LOGGER = Logger.getLogger(ResultPage.class.getName());
+
     WebDriver driver = Driver.getWebDriver();
     WebDriverWait wait = new WebDriverWait(driver, 20);
     WebElement webElement;
+    bookingObject page = new bookingObject(driver);
 
     public void filterByHighestPrice() {
-        WebElement element=driver.findElement(By.xpath("//div[@id='filter_price']/div[@class='filteroptions']"));
-        List<WebElement> listOfPriceFilters = element.findElements(By.tagName("a"));
-        int numberOfPriceFilters = listOfPriceFilters.size();
-        String highestFilterPrice = String.format("//a[@data-id = 'pri-%s']", numberOfPriceFilters);
-        driver.findElement(By.xpath(highestFilterPrice)).click();
+        page.filterByHighestPrice();
+        LOGGER.debug("page was filtered by the highest price");
     }
 
     public void waitSpinnerPass() {
-        wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.xpath("//div[@class='bui-spinner bui-spinner--size-large']"))));
-    }
+        String spinnerXpath = "//div[@class='bui-spinner bui-spinner--size-large']";
+        wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.xpath(spinnerXpath))));
 
-    public void waitFilterElement() {
-        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//li[@data-id='price']"))));
+        LOGGER.debug("spinner with xpath" + spinnerXpath + " passed");
     }
 
     public String maxPriceInFilter() {
-        WebElement element=driver.findElement(By.xpath("//div[@id='filter_price']/div[@class='filteroptions filter_selected']"));
-        List<WebElement> listOfPriceFilters = element.findElements(By.tagName("a"));
-        int numberOfPriceFilters = listOfPriceFilters.size();
-        String highestFilterPrice = String.format("//*[@id='filter_price']/div[3]/a[%s]/label/div/span", numberOfPriceFilters);
-        return driver.findElement(By.xpath(highestFilterPrice)).getText();
+        String filterPrice = page.maxPriceInFilter();
+        LOGGER.debug("price in filter is " + filterPrice);
+        return filterPrice;
     }
 
     public String hotelMaxPrice() {
-        return driver.findElement(By.xpath("//div[@id='hotellist_inner']/div[1]//div[@class='bui-price-display__value prco-inline-block-maker-helper ']/following-sibling::span")).getText();
+        String hotelPrice = driver.findElement(By.xpath("//div[@id='hotellist_inner']/div[1]//div[@class='bui-price-display__value prco-inline-block-maker-helper ']/following-sibling::span")).getText();
+        LOGGER.debug("hotel price is " + hotelPrice);
+        return hotelPrice;
     }
 
     public void sortLowPriceFirst() {
         driver.findElement(By.xpath("//li[@data-id='price']")).click();
+        LOGGER.debug("filter 'Low Price First' was enabled");
     }
 
     public void sortHighestRating() {
-        driver.findElement(By.xpath("//li[@data-id='class']")).click();
+        String sortHighestRatingXpath= "//li[@data-id='class']";
+        driver.findElement(By.xpath(sortHighestRatingXpath)).click();
+        LOGGER.debug("sorted by highest rating using xpath " + sortHighestRatingXpath);
     }
 
     public WebElement chooseRaw(int lineNumber) {
@@ -62,24 +66,24 @@ public class ResultPage {
     }
 
     public String getBackgroundColorOfRequiredLine(int lineNumber) {
-        String argument = String.format("//div[@id='hotellist_inner']/div[%s]",lineNumber);
+        String argument = String.format("//div[@id='hotellist_inner']/div[%s]", lineNumber);
         String color = driver.findElement(By.xpath(argument)).getCssValue("backgroundColor");
         return color;
     }
 
     public void setBackgroundColorOfRequiredLine(String color, WebElement webElement) {
-        String argument = String.format("arguments[0].style.backgroundColor = '%s'",color);
+        String argument = String.format("arguments[0].style.backgroundColor = '%s'", color);
         ((JavascriptExecutor) driver).executeScript(argument, webElement);
     }
 
     public String getHeaderColorOfRequiredLine(int lineNumber) {
-        String argument = String.format("//div[@id='hotellist_inner']/div[%s]",lineNumber);
+        String argument = String.format("//div[@id='hotellist_inner']/div[%s]", lineNumber);
         String color = driver.findElement(By.xpath(argument)).getCssValue("color");
         return color;
     }
 
     public void setHeaderColorOfRequiredLine(String color, WebElement webElement) {
-        String argument = String.format("arguments[0].style.color = '%s'",color);
+        String argument = String.format("arguments[0].style.color = '%s'", color);
         ((JavascriptExecutor) driver).executeScript(argument, webElement);
     }
 
